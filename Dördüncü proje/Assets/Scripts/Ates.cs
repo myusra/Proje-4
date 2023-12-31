@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ates : MonoBehaviour
+public class AtesEtme : MonoBehaviour
 {
     RaycastHit hit;
 
-    
+
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(Physics.Raycast(Camera.main.transform.position,transform.forward,out hit,Mathf.Infinity))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if(hit.collider.gameObject.tag=="cisim")
+                if (hit.collider.gameObject.tag == "cisim")
                 {
                     Destroy(hit.collider.gameObject);
                 }
             }
         }
-        
     }
 }
